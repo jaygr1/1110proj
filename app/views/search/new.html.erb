@@ -1,0 +1,7 @@
+<%= form_tag("/search", method: "get" ) do %>
+<%= label_tag(:zip_code, "Zip Code") %>
+<%= text_field_tag(:zip_code) %> <br>
+<%= label_tag(:keywords, "What sort of things") %>
+<%= text_field_tag(:keywords) %> 
+<%= submit_tag('Search') %>
+<% end %> 

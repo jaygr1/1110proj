@@ -1,1 +1,4 @@
-<%= @results %>
+<% @results["events"]["event"].each do |result| %>
+  <%= @stuff = result["title"] %>
+
+  <% end %>

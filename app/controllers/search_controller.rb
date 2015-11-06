@@ -4,12 +4,16 @@ class SearchController < ApplicationController
 
 
   def index
-    keys = YAML.load_file('application.yml')
-    key = keys['eventful_api_key']
-    response = open("http://api.eventful.com/json/events/search?...&location=San+Diego&app_key=#{key}")
-    hash = JSON.load(response)
-    @results = hash
-  end 
+    user_search = ["keywords", "zip_code"]
+    new_object = []
+    user_search.map do |search|
+      if params[search] && params[search].length > 1
+        new_object << "&#{search}=#{params[search]}"
+      end
+      @results = Search.events(new_object)
+     
+    end 
+  end
 
 end
 
