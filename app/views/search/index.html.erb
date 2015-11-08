@@ -1,4 +1,28 @@
-<% @results["events"]["event"].each do |result| %>
-  <%= @stuff = result["title"] %>
+<font face = "Helvetica">
 
-  <% end %>
+<font size = "150">Are you interested in:<br></font>
+<div style="
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 250px;
+    height: 450px;
+    margin: auto;">
+
+  <%@results["events"]["event"].collect do |result|%>
+    <% result["title"]%><br>
+    <%@resultarray << result["title"]%>
+
+  <%end%>
+
+  <%@resultarray.sample(2).each do |result|%>
+   <center> <%=result%>?<br><br>OR<br><br>
+    </center>
+  <%end%>
+
+
+</div>
+</font>
