@@ -9,20 +9,17 @@
     left: 0;
     right: 0;
     width: 250px;
-    height: 450px;
+    height: 150px;
     margin: auto;">
 
-  <%@results["events"]["event"].collect do |result|%>
-    <% result["title"]%><br>
-    <%@resultarray << result["title"]%>
+  <%@results["events"]["event"].sample(2).collect do |result|%>
+  <br>
+    <a href = "<%=result["url"]%>"><%= result["title"]%></a><br>
+    
 
   <%end%>
 
-  <%@resultarray.sample(2).each do |result|%>
-   <center> <%=result%>?<br><br>OR<br><br>
-    </center>
-  <%end%>
-
+  
 
 </div>
 </font>
