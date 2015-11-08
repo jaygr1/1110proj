@@ -1,3 +1,4 @@
+
 <font face = "Helvetica">
 
 <font size = "150">Are you interested in:<br></font>
@@ -9,13 +10,20 @@
     left: 0;
     right: 0;
     width: 250px;
-    height: 150px;
+    height: 260px;
     margin: auto;">
 
   <%@results["events"]["event"].sample(2).collect do |result|%>
   <br>
+    <center>
+    <%if result["image"]%>
+    <img src="<%=result["image"]["url"]%>" height="100" width="100"><br>
+    <%else%>
+    <table border = "1" height="100" width = "100"><tr><td style="text-align:center">No image available!</td></tr></table><br>
+    <%end%>
     <a href = "<%=result["url"]%>"><%= result["title"]%></a><br>
-    
+
+    </center>
 
   <%end%>
 
