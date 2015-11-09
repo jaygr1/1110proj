@@ -1,20 +1,22 @@
 
 
 
-<div style = "padding-left: 60px;"><h2>Are you interested in:</h2><br></div>
+<div style = "padding-left: 60px;"><h2>Are you interested in...</h2><br></div>
 <div style="
-    display: inline-block;
-    position: fixed;
+
+    position: absolute;
+
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    width: 250px;
-    height: 260px;
-    margin: auto;">
-
+    width: 750px;
+    height: 1700 px;
+    margin: auto;
+    ">
+<br><br><br><br><br><br><br>
   <%@results["events"]["event"].sample(2).collect do |result|%>
-  <br>
+  
     <center>
     <%if result["image"]%>
     <img src="<%=result["image"]["url"]%>" height="100" width="100"><br>
@@ -22,12 +24,17 @@
     <table border = "1" height="100" width = "100"><tr><td style="text-align:center">No image available!</td></tr></table><br>
     <%end%>
     <a href = "<%=result["url"]%>"><%= result["title"]%></a><br>
+    <%if result["description"]%>
+    <%=result["description"]%><br><br>
+    <%else%>
+    No description available.<br><br>
+    <%end%>
 
     </center>
 
   <%end%>
-
-  
-
+<center>
+  <input type="button" value="None of these! Show me others!" onClick="history.go(0)"><br><br>
+</center>
 </div>
 </font>
