@@ -25,7 +25,7 @@
     <%end%>
     <a href = "<%=result["url"]%>"><%= result["title"]%></a><br>
     <%if result["description"]%>
-    <%=result["description"]%><br><br>
+    <%=strip_tags(result["description"])%><br><br>
     <%else%>
     No description available.<br><br>
     <%end%>
