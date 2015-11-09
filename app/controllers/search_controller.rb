@@ -4,9 +4,8 @@ class SearchController < ApplicationController
 
 
   def index
-    user_search = ["keywords", "zip_code"]
+    user_search = ["keywords", "location"]
     new_object = []
-    @resultarray = []
     user_search.map do |search|
       if params[search] && params[search].length > 1
         new_object << "&#{search}=#{params[search]}"

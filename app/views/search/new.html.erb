@@ -2,8 +2,8 @@
 <center>
 
 <%= form_tag("/search", method: "get" ) do %>
-<h2><%= label_tag(:zip_code, "Zip Code") %></h2><br>
-<%= text_field_tag(:zip_code) %> <br><br>
+<h2><%= label_tag(:location, "Zip Code") %></h2><br>
+<%= text_field_tag(:location) %> <br><br>
 <h2><%= label_tag(:keywords, "What sort of things?") %></h2><br>
 <%= text_field_tag(:keywords) %> <br><br>
 <%= submit_tag('Search') %>
