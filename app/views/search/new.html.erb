@@ -1,20 +1,11 @@
-<div style="
-    display: inline-block;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 200px;
-    height: 150px;
-    margin: auto;">
-    <font face = "Helvetica">
+<h4>What's up this weekend?</h4>
+<center>
+
 <%= form_tag("/search", method: "get" ) do %>
-<%= label_tag(:zip_code, "Zip Code") %><br><br>
+<h2><%= label_tag(:zip_code, "Zip Code") %></h2><br>
 <%= text_field_tag(:zip_code) %> <br><br>
-<%= label_tag(:keywords, "What sort of things") %><br><br>
+<h2><%= label_tag(:keywords, "What sort of things?") %></h2><br>
 <%= text_field_tag(:keywords) %> <br><br>
-<center><%= submit_tag('Search') %></center>
+<%= submit_tag('Search') %>
 <% end %> 
-</font>
-</div>
+</center>
