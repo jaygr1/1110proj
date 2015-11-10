@@ -14,14 +14,7 @@ class SearchController < ApplicationController
     end 
   end
 
-  # def randomevent
-  #   @results["events"]["event"].collect do |result|
-  #     @pulledevents = []
-  #     @pulledevents << result 
-  #     binding.pry
-  #   end
-  # end
-
+ 
 end
 
 
