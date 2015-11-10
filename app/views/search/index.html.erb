@@ -1,5 +1,14 @@
 
 
+<style>
+      #map {
+        width: 400px;
+        height: 400px;
+        background-color: #CCC;
+      }
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 
 <div style = "padding-left: 60px;"><h2>Are you interested in...</h2><br></div>
 <div style="
@@ -11,11 +20,11 @@
     left: 0;
     right: 0;
     width: 750px;
-    height: 1700 px;
+    height: 2700 px;
     margin: auto;
     ">
 <br><br><br><br><br><br><br>
-  <%@results["events"]["event"].sample(2).collect do |result|%>
+  <%@results["events"]["event"].sample(1).collect do |result|%>
   
     <center>
     <%if result["image"]%>
@@ -30,11 +39,41 @@
     No description available.<br><br>
     <%end%>
 
-    </center>
+    <!-- maps -->
+
+    <script>
+        function initialize() {
+
+            var mapCanvas = document.getElementById('map');
+
+            var mapOptions = {
+                  center: new google.maps.LatLng(<%=result["latitude"]%>, <%=result["longitude"]%>),
+                  zoom: 12,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var marker = new google.maps.Marker({
+            position: {lat: <%=result["latitude"].to_f%>, lng: <%=result["longitude"].to_f%>},
+            map: map,
+            title: 'Hello World'
+        });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+        marker.setMap(map);
+    </script>
+
+    <div id="map"> 
+
+    </div>
+    <br><br>
+    </center>  
 
   <%end%>
 <center>
-  <input type="button" value="None of these! Show me others!" onClick="history.go(0)"><br><br>
+  <input type="button" value="Show me others!" onClick="history.go(0)"><br><br>
 </center>
 </div>
 </font>
+
+
