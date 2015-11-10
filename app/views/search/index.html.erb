@@ -6,9 +6,13 @@
         height: 400px;
         background-color: #CCC;
       }
+      h6 {
+    text-align: right;
+}
 </style>
 
 <script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <div style = "padding-left: 60px;"><h2>Are you interested in...</h2><br></div>
 <div style="
@@ -28,15 +32,22 @@
   
     <center>
     <%if result["image"]%>
-    <img src="<%=result["image"]["url"]%>" height="100" width="100"><br>
+    <img src="<%=result["image"]["url"]%>" height="200" width="200"><br>
     <%else%>
-    <table border = "1" height="100" width = "100"><tr><td style="text-align:center">No image available!</td></tr></table><br>
+    <img src="http://s1.evcdn.com/images/edpborder500/fallback/event/categories/music/music_default_2.jpg" height="200" width="200"><br>
     <%end%>
-    <a href = "<%=result["url"]%>"><%= result["title"]%></a><br>
+    </center>
+    <a href = "<%=result["url"]%>"><%= result["title"]%></a> 
+    <strong>
+    <br><%=result["start_time"]%><br>
+    <%=result["venue_address"]%><br>
+    </strong>
     <%if result["description"]%>
-    <%=strip_tags(result["description"])%><br><br>
+    <div class="item" style="text-align:left">
+    <%=strip_tags(result["description"])%></div><br><br>
     <%else%>
-    No description available.<br><br>
+    <div class="item" style="text-align:left">
+    No description available.</div><br><br>
     <%end%>
 
     <!-- maps -->
@@ -48,7 +59,7 @@
 
             var mapOptions = {
                   center: new google.maps.LatLng(<%=result["latitude"]%>, <%=result["longitude"]%>),
-                  zoom: 12,
+                  zoom: 15,
                   mapTypeId: google.maps.MapTypeId.ROADMAP
             }
             var map = new google.maps.Map(mapCanvas, mapOptions);
@@ -63,9 +74,43 @@
         marker.setMap(map);
     </script>
 
+    <script>
+    $(function(){ /* to make sure the script runs after page load */
+
+    $('.item').each(function(event){ /* select all divs with the item class */
+    
+        var max_length = 350; /* set the max content length before a read more link will be added */
+        
+        if($(this).html().length > max_length){ /* check for content length */
+            
+            var short_content   = $(this).html().substr(0,max_length); /* split the content in two parts */
+            var long_content    = $(this).html().substr(max_length);
+            
+            $(this).html(short_content+
+                         '<a href="#" class="read_more"><br/><h6>Read More</h6></a>'+
+                         '<span class="more_text" style="display:none;">'+long_content+'</span>'); /* Alter the html to allow the read more functionality */
+                         
+            $(this).find('a.read_more').click(function(event){ /* find the a.read_more element within the new html and bind the following code to it */
+ 
+                event.preventDefault(); /* prevent the a from changing the url */
+                $(this).hide(); /* hide the read more button */
+                $(this).parents('.item').find('.more_text').show(); /* show the .more_text span */
+         
+            });
+            
+        }
+        
+    });
+ 
+ 
+});
+
+    </script>
+    <center>
     <div id="map"> 
 
     </div>
+    
     <br><br>
     </center>  
 
