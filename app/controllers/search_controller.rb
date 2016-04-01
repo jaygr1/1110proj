@@ -10,7 +10,9 @@ class SearchController < ApplicationController
       if params[search] && params[search].length > 1
         new_object << "&#{search}=#{params[search]}"
       end
+
       @results = Search.events(new_object)    
+      # binding.pry
     end 
   end
 
